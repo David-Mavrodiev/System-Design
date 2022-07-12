@@ -10,6 +10,10 @@ const fs = require('fs');
 module.exports = class AuthHelper {
     constructor() {
         this.keysDir = "./keys";
+        if (!fs.existsSync(this.keysDir)) {
+            fs.mkdirSync(this.keysDir);
+        }
+
         this.authPubKeyFile = `${this.keysDir}/auth.pub`;
         this.authPrivKeyFile = `${this.keysDir}/auth.priv`;
     }
